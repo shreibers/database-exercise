@@ -6,7 +6,7 @@ from typing import Generator
 
 import pytest
 
-from db import DataBase
+from dbi import DataBase
 from db_api import DBField, SelectionCriteria, DB_ROOT, DBTable
 
 DB_BACKUP_ROOT = DB_ROOT.parent / (DB_ROOT.name + '_backup')
@@ -14,7 +14,7 @@ STUDENT_FIELDS = [DBField('ID', int), DBField('First', str),
                   DBField('Last', str), DBField('Birthday', dt.datetime)]
 
 
-def delete_files(folder: Path):
+def delete_files(folder: Path) -> None:
     for path in Path(folder).iterdir():
         if path.is_dir():  # No coverage when folder is empty
             delete_files(path)
